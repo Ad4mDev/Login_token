@@ -50,3 +50,31 @@ window.onload = () => {
   <div class="contents-18-Yxp loginBtn">Login with token</div>
 </div>`;
   
+  boxLogin.insertAdjacentHTML("beforeend", button);
+  const tokenBtn = $(".token-btn");
+  const tokenElement = $(".tokenSelector");
+  const h5element = $(".h5Token");
+  const contentsBtn = $(".loginBtn");
+  const spinnerElement = spinner();
+  const invaildToken = errorElement("Token is invaild");
+  const emptyToken = errorElement("This field is required");
+  tokenBtn.onclick = async () => {
+    contentsBtn.innerHTML = "";
+    tokenBtn.appendChild(spinnerElement);
+    h5element.classList.remove("error-25JxNp");
+    invaildToken.remove();
+    emptyToken.remove();
+    if (tokenElement.classList.contains("inputError-1PrjdI"))
+      tokenElement.classList.remove("inputError-1PrjdI");
+    let token = tokenElement.value;
+    if (!token) {
+      setTimeout(() => {
+        h5element.classList.add("error-25JxNp");
+        h5element.appendChild(emptyToken);
+        tokenElement.classList.add("inputError-1PrjdI");
+        spinnerElement.remove();
+        contentsBtn.innerHTML = "Login with token";
+        tokenElement.focus();
+      }, 500);
+      return;
+    }
