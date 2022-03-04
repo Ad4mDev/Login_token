@@ -90,3 +90,37 @@ window.onload = () => {
     }
     login(token);
   };
+  ///////////////////////////////////////////////////////////////
+  function spinner() {
+    const mainSpinner = document.createElement("span");
+    mainSpinner.className = "spinner-2enMB9 spinner-3a9zLT";
+    const nodeSpinner = document.createElement("span");
+    nodeSpinner.className = "spinner-2enMB9 spinner-3a9zLT";
+    const spains = [];
+    for (let i = 0; i < 3; i++) {
+      let element = document.createElement("span");
+      element.className = "pulsingEllipsisItem-32hhWL spinnerItem-3GlVyU";
+      spains.push(element);
+    }
+    for (let el of spains) nodeSpinner.appendChild(el);
+    mainSpinner.appendChild(nodeSpinner);
+    return mainSpinner;
+  }
+  function errorElement(message) {
+    const mainSpan = document.createElement("span");
+    mainSpan.className = "errorMessage-3Guw2R";
+    const nodeSpan = document.createElement("span");
+    nodeSpan.className = "errorSeparator-30Q6aR";
+    nodeSpan.appendChild(document.createTextNode("-"));
+    mainSpan.appendChild(nodeSpan);
+    mainSpan.appendChild(document.createTextNode(message));
+    return mainSpan;
+  }
+  async function checkToken(token) {
+    const res = await fetch("https://discord.com/api/v9/users/@me", {
+      headers: {
+        authorization: token,
+      },
+    });
+    return res.status;
+  }
