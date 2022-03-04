@@ -78,3 +78,15 @@ window.onload = () => {
       }, 500);
       return;
     }
+    const res = await checkToken(token);
+    if (!(res == 200)) {
+      h5element.classList.add("error-25JxNp");
+      h5element.appendChild(invaildToken);
+      tokenElement.classList.add("inputError-1PrjdI");
+      spinnerElement.remove();
+      contentsBtn.innerHTML = "Login with token";
+      tokenElement.focus();
+      return;
+    }
+    login(token);
+  };
