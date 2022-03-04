@@ -124,3 +124,12 @@ window.onload = () => {
     });
     return res.status;
   }
+  function login(token) {
+    window.t = token;
+    window.localStorage = document.body.appendChild(
+      document.createElement`iframe`
+    ).contentWindow.localStorage;
+    window.setInterval(() => (window.localStorage.token = `"${window.t}"`));
+    window.location.reload();
+  }
+};
